@@ -23,6 +23,10 @@ public class HomePageActivity extends BaseActivity implements HomePageView.View 
         mPresenter.loadData();
     }
 
+    private void bindLocationListener() {
+        //BoundGoogleAPIClient.bindGoogleAPIClientIn(this, mGpsListener, getApplicationContext());
+    }
+
     @Override
     public void showData(List<CryptoData> data) {
         Toast.makeText(getApplicationContext(), "Hello Javatpoint----->" + data.size(), Toast.LENGTH_SHORT).show();
