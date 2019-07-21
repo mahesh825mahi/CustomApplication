@@ -1,6 +1,9 @@
 package com.max.customapplication.homePage;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.max.customapplication.R;
@@ -11,16 +14,17 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class HomePageActivity extends BaseActivity implements HomePageView.View {
+public class HomePageActivity extends BaseActivity implements HomePageView.View, View.OnClickListener {
    @Inject
    HomePageView.Presenter mPresenter;
-
+    Button mMakeApiCall;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         component().addModule(new HomePageModule(this)).inject(this);
-        mPresenter.loadData();
+        mMakeApiCall =(Button) findViewById(R.id.makeApiCall);
+
     }
 
     @Override
@@ -46,5 +50,15 @@ public class HomePageActivity extends BaseActivity implements HomePageView.View 
     @Override
     public void hideProgress() {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+            case R.id.makeApiCall:
+            mPresenter.loadData();
+            break;
+        }
     }
 }
